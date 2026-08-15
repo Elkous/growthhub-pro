@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -12,218 +10,967 @@
 
   <title>GrowthHub PRO - Dashboard</title>
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* =====================================
+       RESET
+    ===================================== */
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: #070b14;
+      color: #f8fafc;
+      min-height: 100vh;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+    /* =====================================
+       HEADER
+    ===================================== */
+
+    header {
+      height: 76px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 5%;
+
+      background: rgba(7, 11, 20, 0.92);
+
+      border-bottom: 1px solid #1d2635;
+
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #45d483;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .member-badge {
+      padding: 9px 14px;
+
+      border: 1px solid #263246;
+      border-radius: 999px;
+
+      color: #aeb9ca;
+
+      font-size: 13px;
+    }
+
+    .logout-btn {
+      background: transparent;
+
+      border: 1px solid #29364a;
+
+      color: white;
+
+      padding: 11px 20px;
+
+      border-radius: 12px;
+
+      cursor: pointer;
+
+      font-size: 14px;
+
+      transition: 0.2s;
+    }
+
+    .logout-btn:hover {
+      background: #151e2d;
+      border-color: #45d483;
+    }
+
+
+    /* =====================================
+       MAIN
+    ===================================== */
+
+    main {
+      width: min(1180px, 92%);
+
+      margin: auto;
+
+      padding: 55px 0 80px;
+    }
+
+
+    /* =====================================
+       WELCOME
+    ===================================== */
+
+    .welcome {
+      margin-bottom: 35px;
+    }
+
+    .welcome-small {
+      color: #8793a7;
+
+      font-size: 18px;
+
+      margin-bottom: 7px;
+    }
+
+    .welcome h1 {
+      font-size: clamp(34px, 5vw, 52px);
+
+      line-height: 1.1;
+
+      margin-bottom: 12px;
+
+      letter-spacing: -1.5px;
+    }
+
+    .welcome h1 span {
+      color: #45d483;
+    }
+
+    .email {
+      color: #8d99ac;
+
+      font-size: 16px;
+    }
+
+
+    /* =====================================
+       STATS
+    ===================================== */
+
+    .stats-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 18px;
+
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: #101725;
+
+      border: 1px solid #202b3d;
+
+      border-radius: 20px;
+
+      padding: 25px;
+
+      min-height: 155px;
+
+      transition:
+        transform 0.2s,
+        border-color 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+
+      border-color: #34445d;
+    }
+
+    .stat-icon {
+      font-size: 32px;
+
+      margin-bottom: 15px;
+    }
+
+    .stat-number {
+      font-size: 31px;
+
+      font-weight: 800;
+
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: #8793a7;
+
+      font-size: 14px;
+    }
+
+
+    /* =====================================
+       PROFILE CARD
+    ===================================== */
+
+    .profile-card {
+      background: linear-gradient(
+        135deg,
+        #111a29,
+        #0d1421
+      );
+
+      border: 1px solid #243147;
+
+      border-radius: 22px;
+
+      padding: 28px;
+
+      margin-bottom: 30px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 25px;
+    }
+
+    .profile-left {
+      display: flex;
+
+      align-items: center;
+
+      gap: 18px;
+    }
+
+    .avatar {
+      width: 65px;
+      height: 65px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #182536;
+
+      border: 1px solid #30415a;
+
+      font-size: 27px;
+    }
+
+    .profile-info h3 {
+      font-size: 20px;
+
+      margin-bottom: 5px;
+    }
+
+    .profile-info p {
+      color: #8490a3;
+
+      font-size: 14px;
+    }
+
+    .role {
+      padding: 9px 15px;
+
+      border-radius: 999px;
+
+      background: rgba(69, 212, 131, 0.1);
+
+      border: 1px solid rgba(69, 212, 131, 0.3);
+
+      color: #45d483;
+
+      font-size: 13px;
+
+      font-weight: 600;
+    }
+
+
+    /* =====================================
+       SECTION
+    ===================================== */
+
+    .section-title {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      margin-bottom: 17px;
+    }
+
+    .section-title h2 {
+      font-size: 25px;
+    }
+
+    .section-title span {
+      color: #647187;
+
+      font-size: 13px;
+    }
+
+
+    /* =====================================
+       FEATURES
+    ===================================== */
+
+    .features-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: #101725;
+
+      border: 1px solid #202b3d;
+
+      border-radius: 20px;
+
+      padding: 28px;
+
+      min-height: 180px;
+
+      cursor: pointer;
+
+      transition: 0.25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+
+      border-color: #45d483;
+
+      background: #121c2b;
+    }
+
+    .feature-icon {
+      font-size: 34px;
+
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      font-size: 19px;
+
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: #8793a7;
+
+      line-height: 1.6;
+
+      font-size: 14px;
+    }
+
+    .feature-link {
+      display: inline-block;
+
+      margin-top: 17px;
+
+      color: #45d483;
+
+      font-size: 13px;
+
+      font-weight: 600;
+    }
+
+
+    /* =====================================
+       FOOTER
+    ===================================== */
+
+    footer {
+      text-align: center;
+
+      color: #566276;
+
+      padding: 25px 0 40px;
+
+      font-size: 13px;
+    }
+
+
+    /* =====================================
+       LOADING
+    ===================================== */
+
+    .loading {
+      position: fixed;
+
+      inset: 0;
+
+      background: #070b14;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      z-index: 9999;
+
+      transition: 0.3s;
+    }
+
+    .loading-box {
+      text-align: center;
+    }
+
+    .loading-logo {
+      font-size: 28px;
+
+      font-weight: 800;
+
+      margin-bottom: 20px;
+    }
+
+    .loading-logo span {
+      color: #45d483;
+    }
+
+    .loader {
+      width: 38px;
+      height: 38px;
+
+      border: 3px solid #263246;
+
+      border-top-color: #45d483;
+
+      border-radius: 50%;
+
+      animation: spin 0.8s linear infinite;
+
+      margin: auto;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+
+    /* =====================================
+       MOBILE
+    ===================================== */
+
+    @media (max-width: 900px) {
+
+      .stats-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .features-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      header {
+        height: 68px;
+
+        padding: 0 20px;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .member-badge {
+        display: none;
+      }
+
+      .logout-btn {
+        padding: 9px 14px;
+      }
+
+      main {
+        width: 90%;
+
+        padding-top: 38px;
+      }
+
+      .welcome h1 {
+        font-size: 38px;
+      }
+
+      .stats-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+
+        gap: 12px;
+      }
+
+      .stat-card {
+        min-height: 135px;
+
+        padding: 19px;
+      }
+
+      .stat-icon {
+        font-size: 27px;
+      }
+
+      .stat-number {
+        font-size: 26px;
+      }
+
+      .profile-card {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding: 22px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        min-height: 150px;
+      }
+
+    }
+  </style>
 </head>
-
 
 <body>
 
 
-  <header class="topbar">
+  <!-- =====================================
+       LOADING SCREEN
+  ====================================== -->
 
-    <div class="logo">
-      GrowthHub <span>PRO</span>
+  <div class="loading" id="loadingScreen">
+
+    <div class="loading-box">
+
+      <div class="loading-logo">
+        GrowthHub <span>PRO</span>
+      </div>
+
+      <div class="loader"></div>
+
     </div>
 
+  </div>
 
-    <button
-      onclick="logout()"
-      class="logout-btn"
-    >
-      Logout
-    </button>
+
+  <!-- =====================================
+       HEADER
+  ====================================== -->
+
+  <header>
+
+    <a href="dashboard.html" class="logo">
+      GrowthHub <span>PRO</span>
+    </a>
+
+    <div class="header-right">
+
+      <div class="member-badge">
+        🚀 Growth Member
+      </div>
+
+      <button
+        class="logout-btn"
+        id="logoutBtn"
+      >
+        Logout
+      </button>
+
+    </div>
 
   </header>
 
 
+  <!-- =====================================
+       MAIN
+  ====================================== -->
 
-  <main class="dashboard">
+  <main>
+
+
+    <!-- WELCOME -->
 
     <section class="welcome">
 
-      <p>Welcome back 👋</p>
+      <div class="welcome-small">
+        Welcome back 👋
+      </div>
 
-      <h1 id="userName">
-        Member
+      <h1>
+        <span id="userName">
+          GrowthHub Member
+        </span>
       </h1>
 
-      <p id="userEmail"></p>
-
-    </section>
-
-
-
-    <!-- Stats -->
-
-    <section class="stats">
-
-      <div class="stat-card">
-
-        <span>⭐</span>
-
-        <h3 id="xp">
-          0
-        </h3>
-
-        <p>XP Points</p>
-
-      </div>
-
-
-      <div class="stat-card">
-
-        <span>🔥</span>
-
-        <h3>
-          0
-        </h3>
-
-        <p>Campaigns</p>
-
-      </div>
-
-
-      <div class="stat-card">
-
-        <span>✅</span>
-
-        <h3>
-          0
-        </h3>
-
-        <p>Tasks</p>
-
-      </div>
-
-
-      <div class="stat-card">
-
-        <span>🌐</span>
-
-        <h3>
-          0
-        </h3>
-
-        <p>Traffic</p>
-
+      <div
+        class="email"
+        id="userEmail"
+      >
+        Loading...
       </div>
 
     </section>
 
 
+    <!-- =====================================
+         PROFILE
+    ====================================== -->
 
-    <!-- Main Features -->
+    <section class="profile-card">
 
-    <section class="features">
+      <div class="profile-left">
 
-
-      <a href="#" class="feature-card">
-
-        <div class="feature-icon">
-          🚀
+        <div class="avatar">
+          👤
         </div>
 
-        <h2>
-          Campaigns
-        </h2>
+        <div class="profile-info">
 
-        <p>
-          Join campaigns and grow together.
-        </p>
+          <h3 id="profileName">
+            GrowthHub Member
+          </h3>
 
-      </a>
+          <p>
+            Your GrowthHub community profile
+          </p>
 
-
-
-      <a href="#" class="feature-card">
-
-        <div class="feature-icon">
-          ✅
         </div>
 
-        <h2>
-          Tasks
-        </h2>
+      </div>
 
-        <p>
-          Complete tasks and earn XP.
-        </p>
+      <div
+        class="role"
+        id="userRole"
+      >
+        Member
+      </div>
 
-      </a>
+    </section>
 
 
+    <!-- =====================================
+         STATS
+    ====================================== -->
 
-      <a href="#" class="feature-card">
+    <section class="stats-grid">
 
-        <div class="feature-icon">
-          🌐
+
+      <!-- XP -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          ⭐
         </div>
 
-        <h2>
-          Traffic
-        </h2>
+        <div
+          class="stat-number"
+          id="userXP"
+        >
+          0
+        </div>
 
-        <p>
-          Discover free traffic opportunities.
-        </p>
+        <div class="stat-label">
+          XP Points
+        </div>
 
-      </a>
+      </div>
 
 
+      <!-- LEVEL -->
 
-      <a href="#" class="feature-card">
+      <div class="stat-card">
 
-        <div class="feature-icon">
+        <div class="stat-icon">
           🏆
         </div>
 
-        <h2>
-          Leaderboard
-        </h2>
-
-        <p>
-          See the top members.
-        </p>
-
-      </a>
-
-
-
-      <a href="#" class="feature-card">
-
-        <div class="feature-icon">
-          👥
+        <div
+          class="stat-number"
+          id="userLevel"
+        >
+          1
         </div>
 
-        <h2>
-          Members
-        </h2>
-
-        <p>
-          Discover community members.
-        </p>
-
-      </a>
-
-
-
-      <a href="#" class="feature-card">
-
-        <div class="feature-icon">
-          💼
+        <div class="stat-label">
+          Level
         </div>
 
+      </div>
+
+
+      <!-- CAMPAIGNS -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🚀
+        </div>
+
+        <div
+          class="stat-number"
+          id="campaignCount"
+        >
+          0
+        </div>
+
+        <div class="stat-label">
+          Campaigns
+        </div>
+
+      </div>
+
+
+      <!-- TRAFFIC -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🌐
+        </div>
+
+        <div
+          class="stat-number"
+          id="trafficCount"
+        >
+          0
+        </div>
+
+        <div class="stat-label">
+          Traffic
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =====================================
+         COMMUNITY
+    ====================================== -->
+
+    <section>
+
+      <div class="section-title">
+
         <h2>
-          Services
+          GrowthHub
         </h2>
 
-        <p>
-          Offer and discover services.
-        </p>
+        <span>
+          Grow together 🚀
+        </span>
 
-      </a>
+      </div>
 
+
+      <div class="features-grid">
+
+
+        <!-- CAMPAIGNS -->
+
+        <a
+          href="#campaigns"
+          class="feature-card"
+        >
+
+          <div class="feature-icon">
+            🚀
+          </div>
+
+          <h3>
+            Campaigns
+          </h3>
+
+          <p>
+            Join growth campaigns and work
+            together with other members.
+          </p>
+
+          <span class="feature-link">
+            Explore campaigns →
+          </span>
+
+        </a>
+
+
+        <!-- TASKS -->
+
+        <a
+          href="#tasks"
+          class="feature-card"
+        >
+
+          <div class="feature-icon">
+            ✅
+          </div>
+
+          <h3>
+            Tasks
+          </h3>
+
+          <p>
+            Complete community tasks and
+            earn XP points.
+          </p>
+
+          <span class="feature-link">
+            View tasks →
+          </span>
+
+        </a>
+
+
+        <!-- TRAFFIC -->
+
+        <a
+          href="#traffic"
+          class="feature-card"
+        >
+
+          <div class="feature-icon">
+            🌐
+          </div>
+
+          <h3>
+            Free Traffic
+          </h3>
+
+          <p>
+            Discover websites and traffic
+            opportunities shared by members.
+          </p>
+
+          <span class="feature-link">
+            Find traffic →
+          </span>
+
+        </a>
+
+
+        <!-- LEADERBOARD -->
+
+        <a
+          href="#leaderboard"
+          class="feature-card"
+        >
+
+          <div class="feature-icon">
+            🏆
+          </div>
+
+          <h3>
+            Leaderboard
+          </h3>
+
+          <p>
+            See the top members and track
+            your position in the community.
+          </p>
+
+          <span class="feature-link">
+            View leaderboard →
+          </span>
+
+        </a>
+
+
+        <!-- MEMBERS -->
+
+        <a
+          href="#members"
+          class="feature-card"
+        >
+
+          <div class="feature-icon">
+            👥
+          </div>
+
+          <h3>
+            Members
+          </h3>
+
+          <p>
+            Discover other marketers,
+            bloggers, developers and media buyers.
+          </p>
+
+          <span class="feature-link">
+            View members →
+          </span>
+
+        </a>
+
+
+        <!-- SERVICES -->
+
+        <a
+          href="#services"
+          class="feature-card"
+        >
+
+          <div class="feature-icon">
+            💼
+          </div>
+
+          <h3>
+            Services
+          </h3>
+
+          <p>
+            Share your services and discover
+            useful services from other members.
+          </p>
+
+          <span class="feature-link">
+            Explore services →
+          </span>
+
+        </a>
+
+
+      </div>
 
     </section>
 
@@ -231,18 +978,132 @@
   </main>
 
 
+  <!-- =====================================
+       FOOTER
+  ====================================== -->
 
-  <!-- Supabase -->
+  <footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    GrowthHub PRO © 2026
+
+  </footer>
+
+
+  <!-- =====================================
+       SCRIPTS
+  ====================================== -->
 
   <script src="supabase.js"></script>
-
-  <script src="auth.js"></script>
 
   <script src="dashboard.js"></script>
 
 
-</body>
+  <!-- =====================================
+       DASHBOARD UI
+  ====================================== -->
 
-</html>
+  <script>
+
+    // -------------------------------------
+    // Logout
+    // -------------------------------------
+
+    document
+      .getElementById("logoutBtn")
+      .addEventListener("click", async () => {
+
+        const {
+          error
+        } = await supabaseClient.auth.signOut();
+
+        if (error) {
+
+          console.error(
+            "Logout error:",
+            error
+          );
+
+          return;
+
+        }
+
+        window.location.href =
+          "index.html";
+
+      });
+
+
+    // -------------------------------------
+    // Copy name into profile
+    // -------------------------------------
+
+    const observer =
+      new MutationObserver(() => {
+
+        const name =
+          document.getElementById("userName")
+            ?.textContent;
+
+        const profileName =
+          document.getElementById("profileName");
+
+        if (
+          profileName &&
+          name &&
+          name !== "GrowthHub Member"
+        ) {
+
+          profileName.textContent =
+            name;
+
+        }
+
+      });
+
+
+    observer.observe(
+      document.body,
+      {
+        childList: true,
+        subtree: true
+      }
+    );
+
+
+    // -------------------------------------
+    // Hide loading screen
+    // -------------------------------------
+
+    window.addEventListener(
+      "load",
+      () => {
+
+        setTimeout(() => {
+
+          const loading =
+            document.getElementById(
+              "loadingScreen"
+            );
+
+          if (loading) {
+
+            loading.style.opacity = "0";
+
+            setTimeout(() => {
+
+              loading.style.display =
+                "none";
+
+            }, 300);
+
+          }
+
+        }, 500);
+
+      }
+    );
+
+  </script>
+
+</body>
+  </html>
