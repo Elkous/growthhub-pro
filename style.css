@@ -1,1 +1,501 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+
+body {
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    #080b12;
+
+  color: #ffffff;
+
+  min-height: 100vh;
+
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+
+  font-size: 24px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.5px;
+
+}
+
+
+.logo span {
+
+  color: #4ade80;
+
+}
+
+
+/* =========================
+   AUTH
+========================= */
+
+.auth-container {
+
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+}
+
+
+.auth-card {
+
+  width: 100%;
+
+  max-width: 430px;
+
+  background: #111722;
+
+  border: 1px solid #222b3a;
+
+  border-radius: 22px;
+
+  padding: 35px;
+
+  box-shadow:
+    0 25px 80px
+    rgba(0,0,0,.35);
+
+}
+
+
+.auth-card .logo {
+
+  text-align: center;
+
+  margin-bottom: 10px;
+
+}
+
+
+.subtitle {
+
+  text-align: center;
+
+  color: #8c98aa;
+
+  margin-bottom: 35px;
+
+}
+
+
+.auth-card h1 {
+
+  font-size: 27px;
+
+  margin-bottom: 25px;
+
+}
+
+
+.input-group {
+
+  margin-bottom: 18px;
+
+}
+
+
+.input-group label {
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #cbd5e1;
+
+  font-size: 14px;
+
+}
+
+
+.input-group input {
+
+  width: 100%;
+
+  padding: 14px 15px;
+
+  border-radius: 12px;
+
+  border: 1px solid #2a3547;
+
+  background: #0b1018;
+
+  color: white;
+
+  outline: none;
+
+  font-size: 15px;
+
+}
+
+
+.input-group input:focus {
+
+  border-color: #4ade80;
+
+}
+
+
+.btn {
+
+  width: 100%;
+
+  padding: 15px;
+
+  border: 0;
+
+  border-radius: 12px;
+
+  background: #4ade80;
+
+  color: #07100a;
+
+  font-weight: 800;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+}
+
+
+.btn:hover {
+
+  opacity: .9;
+
+}
+
+
+.message {
+
+  min-height: 22px;
+
+  margin-top: 15px;
+
+  color: #4ade80;
+
+  font-size: 14px;
+
+}
+
+
+.auth-footer {
+
+  margin-top: 25px;
+
+  text-align: center;
+
+  color: #8c98aa;
+
+  font-size: 14px;
+
+}
+
+
+.auth-footer a {
+
+  color: #4ade80;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+
+  height: 75px;
+
+  border-bottom:
+    1px solid #202938;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 6%;
+
+  background: #0b1018;
+
+}
+
+
+.logout-btn {
+
+  background: transparent;
+
+  color: #ffffff;
+
+  border: 1px solid #303b4d;
+
+  border-radius: 10px;
+
+  padding: 10px 16px;
+
+  cursor: pointer;
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+
+  max-width: 1200px;
+
+  margin: auto;
+
+  padding: 45px 20px;
+
+}
+
+
+.welcome {
+
+  margin-bottom: 35px;
+
+}
+
+
+.welcome p {
+
+  color: #8995a8;
+
+}
+
+
+.welcome h1 {
+
+  font-size: 38px;
+
+  margin: 8px 0;
+
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 18px;
+
+  margin-bottom: 30px;
+
+}
+
+
+.stat-card {
+
+  background: #111722;
+
+  border:
+    1px solid #222b3a;
+
+  border-radius: 18px;
+
+  padding: 22px;
+
+}
+
+
+.stat-card span {
+
+  font-size: 25px;
+
+}
+
+
+.stat-card h3 {
+
+  font-size: 30px;
+
+  margin-top: 12px;
+
+}
+
+
+.stat-card p {
+
+  color: #8793a5;
+
+  margin-top: 4px;
+
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+
+}
+
+
+.feature-card {
+
+  text-decoration: none;
+
+  color: white;
+
+  background: #111722;
+
+  border:
+    1px solid #222b3a;
+
+  border-radius: 18px;
+
+  padding: 25px;
+
+  transition: .2s;
+
+}
+
+
+.feature-card:hover {
+
+  transform:
+    translateY(-4px);
+
+  border-color:
+    #4ade80;
+
+}
+
+
+.feature-icon {
+
+  font-size: 30px;
+
+  margin-bottom: 15px;
+
+}
+
+
+.feature-card h2 {
+
+  font-size: 20px;
+
+  margin-bottom: 8px;
+
+}
+
+
+.feature-card p {
+
+  color: #8793a5;
+
+  line-height: 1.5;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+  .stats {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+  }
+
+
+  .features {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+
+  .welcome h1 {
+
+    font-size: 30px;
+
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .auth-card {
+
+    padding: 25px 20px;
+
+  }
+
+
+  .stats {
+
+    gap: 10px;
+
+  }
+
+
+  .stat-card {
+
+    padding: 17px;
+
+  }
+
+
+  .stat-card h3 {
+
+    font-size: 24px;
+
+  }
+
+  }
