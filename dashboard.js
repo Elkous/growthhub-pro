@@ -1,65 +1,129 @@
-// ===============================
-// DASHBOARD
-// ===============================
+// =====================================
+// GROWTHHUB PRO - DASHBOARD
+// =====================================
 
 async function loadDashboard() {
 
+  // -------------------------------------
+  // 1. Get current session
+  // -------------------------------------
+
   const {
-    data: {
-      session
-    }
+    data: { session },
+    error: sessionError
   } = await supabaseClient.auth.getSession();
 
+  if (sessionError) {
+    console.error("Session error:", sessionError);
+    return;
+  }
 
-  // User not logged in
+  // -------------------------------------
+  // 2. User not logged in
+  // -------------------------------------
 
   if (!session) {
-
     window.location.href = "index.html";
+    return;
+  }
+
+  const user = session.user;
+
+  console.log("Logged user:", user);
+
+  // -------------------------------------
+  // 3. Get profile from database
+  // -------------------------------------
+
+  const {
+    data: profile,
+    error: profileError
+  } = await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("id", user.id)
+    .single();
+
+  if (profileError) {
+
+    console.error("Profile error:", profileError);
+
+    // Email still works from Auth
+    setText("userEmail", user.email);
+
+    // Fallback name
+    setText(
+      "userName",
+      user.user_metadata?.full_name || "GrowthHub Member"
+    );
 
     return;
-
   }
 
+  console.log("Profile:", profile);
 
-  const user =
-    session.user;
+  // -------------------------------------
+  // 4. User information
+  // -------------------------------------
+
+  setText(
+    "userEmail",
+    profile.email || user.email
+  );
+
+  setText(
+    "userName",
+    profile.full_name || "GrowthHub Member"
+  );
+
+  // -------------------------------------
+  // 5. Profile statistics
+  // -------------------------------------
+
+  setText(
+    "userPoints",
+    profile.points ?? 0
+  );
+
+  setText(
+    "userLevel",
+    profile.level ?? 1
+  );
+
+  setText(
+    "userRole",
+    profile.role || "Member"
+  );
+
+  // -------------------------------------
+  // 6. Optional statistics
+  // -------------------------------------
+
+  setText(
+    "userXP",
+    profile.points ?? 0
+  );
+
+}
 
 
-  // Email
+// =====================================
+// Helper
+// =====================================
 
-  const emailElement =
-    document.getElementById("userEmail");
+function setText(id, value) {
 
+  const element = document.getElementById(id);
 
-  if (emailElement) {
-
-    emailElement.textContent =
-      user.email;
-
-  }
-
-
-  // Name
-
-  const nameElement =
-    document.getElementById("userName");
-
-
-  const name =
-    user.user_metadata?.full_name;
-
-
-  if (nameElement) {
-
-    nameElement.textContent =
-      name || "GrowthHub Member";
-
+  if (element) {
+    element.textContent = value;
   }
 
 }
 
 
-// Start
+// =====================================
+// Start Dashboard
+// =====================================
 
 loadDashboard();
